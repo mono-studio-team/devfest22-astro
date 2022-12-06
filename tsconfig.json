@@ -4,9 +4,13 @@
     "jsx": "preserve",
     "jsxImportSource": "react",
     "allowJs": true,
+    "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]
     }
+  },
+  "vueCompilerOptions": {
+    "jsxTemplates": true
   },
 }

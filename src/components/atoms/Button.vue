@@ -1,0 +1,49 @@
+<template>
+  <a v-if="tag === 'a'" :href="href" :class="classes" @click="$emit('click')">
+    <slot></slot>
+  </a>
+  <button v-else-if="tag === 'button'" type="button" :class="classes" @click="$emit('click')">
+    <slot></slot>
+  </button>
+</template>
+<script setup lang="ts">
+  import { computed } from '@vue/reactivity';
+
+  type Props = {
+    id?: string
+    theme?: 'primary' | 'ghost'
+    href?: string
+    tag?: 'button' | 'a'
+  }
+
+  const props = withDefaults(defineProps<Props>(), {
+    tag: 'button'
+  })
+  defineEmits<{
+    (e: 'click'): void
+  }>()
+
+  const classes = computed(() => {
+    switch (props.theme) {
+      case 'primary':
+        return 'btn btn--primary'
+      case 'ghost':
+        return 'btn btn--ghost'
+      default:
+        return 'btn'
+    }
+  })
+</script>
+<style scoped>
+  .btn {
+		@apply inline-flex items-center justify-center rounded-md shadow-md border-gray-400 border bg-transparent font-medium text-center text-base text-gray-700 leading-snug transition py-3 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800;
+	}
+
+	.btn.btn--ghost {
+		@apply border-none shadow-none text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+	}
+
+	.btn.btn--primary {
+		@apply font-semibold bg-primary-600 text-white border-primary-600 hover:bg-primary-800 hover:border-primary-800 hover:text-white dark:text-white dark:bg-primary-700 dark:border-primary-700 dark:hover:border-primary-900 dark:hover:bg-primary-900;
+	}
+</style>
