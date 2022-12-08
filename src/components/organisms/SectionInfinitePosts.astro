@@ -1,0 +1,16 @@
+---
+import Section from "~/components/atoms/Section.vue";
+import InfiniteList from "./InfiniteList";
+import type { Props as PostProps } from '~/components/atoms/Post'
+
+type Props = {
+  data: PostProps[]
+}
+
+const { data } = Astro.props
+
+---
+
+<Section>
+  <InfiniteList data={data} client:only="react" />
+</Section>

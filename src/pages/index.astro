@@ -1,9 +1,47 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Hero from '~/components/organisms/Hero.astro';
+import SectionPosts from '~/components/organisms/SectionPosts.astro';
+import { games, news } from '~/lib/mmobomb';
+import { createPost, loremIpsum } from '~/lib/utils';
+import Layout from '~/layouts/Layout.astro';
+
+const popularGames = await games({ "sort-by": 'popularity' })
+  .then(el => el.slice(0, 8).map(createPost))
+
+const latestNews = await news()
+  .then(el => el.slice(0, 8).map(createPost))
+
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-	</main>
+  <Hero
+    title="DevFest22 Catania Astro Example"
+    paragrah="Little project for view how to use Astro"
+    buttons={[
+      {
+        label: 'Test',
+        url: 'https://google.com',
+        blank: true
+      },
+      {
+        label: 'Test',
+        url: 'https://google.com',
+        blank: true,
+        theme: 'primary'
+      }
+    ]}
+  />
+  <SectionPosts
+    id="popular-games"
+    posts={popularGames}
+    title="Popular games"
+    paragraph={loremIpsum}
+    showMoreUrl="/games"
+  />
+  <SectionPosts
+    id="latest-news"
+    posts={latestNews}
+    title="Latest news"
+    paragraph={loremIpsum}
+  />
 </Layout>

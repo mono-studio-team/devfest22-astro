@@ -1,0 +1,30 @@
+---
+import Heading from '~/components/atoms/Heading.vue';
+import GridPost from '~/components/molecules/GridPost';
+import type { Props as PostProps } from '~/components/atoms/Post'
+import Button from '~/components/atoms/Button.vue';
+import Section from '../atoms/Section.vue';
+
+export type Props = {
+  id?: string
+  posts: PostProps[]
+  title: string
+  paragraph: string
+  showMoreUrl?: string
+}
+
+const { id, posts, title, paragraph, showMoreUrl } = Astro.props
+
+---
+
+<Section id={id}>
+  <Heading title={title} paragraph={paragraph} />
+  <GridPost posts={posts} />
+  {showMoreUrl && (
+    <div class="mt-10 flex justify-center">
+      <Button tag="a" href={showMoreUrl} theme="primary">
+        Show more
+      </Button>
+    </div>
+  )}
+</Section>

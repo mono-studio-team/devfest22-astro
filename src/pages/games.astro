@@ -1,0 +1,15 @@
+---
+import Hero from "~/components/organisms/Hero.astro";
+import SectionInfinitePosts from "~/components/organisms/SectionInfinitePosts.astro";
+import Layout from "~/layouts/Layout.astro";
+import { games } from "~/lib/mmobomb";
+import { createPost } from "~/lib/utils";
+
+const data = await games({ "sort-by": 'popularity' }).then(el => el.map(createPost))
+
+---
+
+<Layout title="Games - Astro">
+  <Hero title="List of games" paragrah="Implement infinite scroll with astro islands" />
+  <SectionInfinitePosts data={data} />
+</Layout>

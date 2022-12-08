@@ -1,5 +1,12 @@
 <template>
-  <a v-if="tag === 'a'" :href="href" :class="classes" @click="$emit('click')">
+  <a
+    v-if="tag === 'a'"
+    :href="href"
+    :class="classes"
+    :target="blank ? '_blank' : undefined"
+    :rel="blank ? 'noopener' : undefined"
+    @click="$emit('click')"
+  >
     <slot></slot>
   </a>
   <button v-else-if="tag === 'button'" type="button" :class="classes" @click="$emit('click')">
@@ -9,10 +16,11 @@
 <script setup lang="ts">
   import { computed } from '@vue/reactivity';
 
-  type Props = {
+  export type Props = {
     id?: string
     theme?: 'primary' | 'ghost'
     href?: string
+    blank?: boolean
     tag?: 'button' | 'a'
   }
 
