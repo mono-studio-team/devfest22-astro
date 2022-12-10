@@ -1,4 +1,5 @@
 ---
+import Button from "../atoms/Button.vue";
 import Section from "../atoms/Section.vue";
 
 ---
@@ -6,11 +7,11 @@ import Section from "../atoms/Section.vue";
 <footer>
   <Section>
     <div class="flex justify-between">
-      <a href="https://mono.studio">mono.studio</a>
+      <Button href="https://mono.studio" tag="a" blank theme="ghost">mono.studio</Button>
       <div>
         <p>Credits</p>
-        <p>Games: <a href="https://www.mmobomb.com/api" class="underline">mmobomb</a></p>
-        <p>UI Inspiration: <a href="https://github.com/onwidget/astrowind" class="underline">AstroWind</a></p>
+        <p>Games: <Button href="https://www.mmobomb.com/api" blank tag="a" theme="ghost">mmobomb</Button></p>
+        <p>UI Inspiration: <Button href="https://github.com/onwidget/astrowind" blank tag="a" theme="ghost">AstroWind</Button></p>
       </div>
     </div>
   </Section>

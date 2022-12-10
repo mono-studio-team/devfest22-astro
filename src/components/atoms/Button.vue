@@ -48,7 +48,7 @@
 	}
 
 	.btn.btn--ghost {
-		@apply border-none shadow-none text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+		@apply border-none shadow-none text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white p-0 hover:bg-transparent focus:ring-0 focus:ring-offset-0;
 	}
 
 	.btn.btn--primary {
