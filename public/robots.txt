@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: */?
+Disallow: */?*
+Allow: /
+Sitemap: https://devfest22-astro.pages.dev/sitemap-index.xml
