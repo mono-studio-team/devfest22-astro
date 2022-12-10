@@ -1,5 +1,6 @@
 ---
 import '@fontsource/inter/variable.css';
+import Footer from '~/components/organisms/Footer.astro';
 import Header from '~/components/organisms/Header.astro';
 
 export interface Props {
@@ -26,6 +27,7 @@ const { title, description } = Astro.props;
     <main>
       <slot />
     </main>
+    <Footer />
 	</body>
 </html>
 

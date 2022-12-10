@@ -14,7 +14,7 @@
   </button>
 </template>
 <script setup lang="ts">
-  import { computed } from '@vue/reactivity';
+  import { computed } from '@vue/reactivity'
 
   export type Props = {
     id?: string

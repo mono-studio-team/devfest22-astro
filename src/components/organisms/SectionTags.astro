@@ -1,0 +1,19 @@
+---
+import Section from "~/components/atoms/Section.vue";
+import Tag from "../atoms/Tag.vue";
+
+type Props = {
+  tags: string[]
+}
+
+const { tags } = Astro.props
+
+---
+
+<Section padding={false}>
+  <div class="flex flex-wrap gap-2">
+    {tags.map(tag => (
+      <Tag tag={tag} />
+    ))}
+  </div>
+</Section>

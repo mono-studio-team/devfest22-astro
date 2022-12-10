@@ -6,19 +6,21 @@ import ToggleTheme from '~/components/atoms/ToggleTheme.astro';
 import ToggleMenu from '~/components/atoms/ToggleMenu.astro';
 
 const items = [
-  {
-    label: 'Link 1',
-    url: '/'
+{
+    label: 'Popular games',
+    url: '/#popular-games'
   },
   {
-    label: 'Link 2',
-    url: '/'
+    label: 'News',
+    url: '/#news'
   },
   {
-    label: 'Link 3',
-    url: '/'
-  }
+    label: 'All Games',
+    url: '/games'
+  },
 ]
+
+const githubUrl = 'https://github.com/mono-studio-team/devfest22-astro'
 
 ---
 
@@ -54,7 +56,9 @@ const items = [
 				<li class="md:hidden">
 					<a
 						class="font-bold hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-						href="https://github.com"
+						target="_blank"
+            rel="noopener"
+            href={githubUrl}
 					>
             Github
 					</a>
@@ -64,9 +68,11 @@ const items = [
 				<div class="hidden items-center md:flex">
 					<ToggleTheme />
 					<a
-						href="https://github.com/"
+            href={githubUrl}
+            target="_blank"
+            rel="noopener"
 						class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
-						aria-label="Astrowind Github"
+						aria-label="Github"
 					>
 						<Icon name="tabler:brand-github" class="w-5 h-5" />
 					</a>
@@ -92,11 +98,22 @@ const items = [
       item.addEventListener('click', function(this: HTMLButtonElement) {
         this.classList.toggle('expanded');
         document.body.classList.toggle('overflow-hidden');
+        document.body.classList.toggle('menu-visible');
 
         const header = document.getElementById('header')
         header?.classList.toggle('h-screen');
         header?.querySelector('nav')?.classList.toggle('hidden');
       })
     })
+  })
+
+  window.addEventListener('resize', function() {
+    if (!document.body.classList.contains('menu-visible')) return
+
+    document.body.classList.remove('overflow-hidden');
+    document.body.classList.remove('menu-visible');
+    const header = document.getElementById('header')
+    header?.classList.remove('h-screen');
+    header?.querySelector('nav')?.classList.add('hidden');
   })
 </script>

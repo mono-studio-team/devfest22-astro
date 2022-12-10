@@ -1,0 +1,34 @@
+---
+import Hero from "~/components/organisms/Hero.astro";
+import SectionTags from "~/components/organisms/SectionTags.astro";
+import Layout from "~/layouts/Layout.astro";
+import { games } from "~/lib/mmobomb";
+import type { Game } from "~/lib/types";
+import { slugify } from "~/lib/utils";
+
+type Props = {
+  game: Game
+}
+
+export async function getStaticPaths() {
+  const data = await games()
+
+  return data.map(el => ({
+    params: { game: slugify(el.title) },
+    props: { game: el }
+  }))
+}
+
+const { game } = Astro.props;
+const tags: string[] = [
+  game.developer,
+  game.genre,
+  game.platform,
+]
+
+---
+
+<Layout title={`${game.title} - Astro`} description={game.short_description}>
+  <SectionTags tags={tags} />
+  <Hero title={game.title} paragrah={game.short_description} image={game.thumbnail} />
+</Layout>

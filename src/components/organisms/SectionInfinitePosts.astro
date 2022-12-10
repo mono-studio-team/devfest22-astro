@@ -12,5 +12,5 @@ const { data } = Astro.props
 ---
 
 <Section>
-  <InfiniteList data={data} client:only="react" />
+  <InfiniteList data={data} client:load />
 </Section>

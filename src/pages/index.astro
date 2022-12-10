@@ -17,19 +17,6 @@ const latestNews = await news()
   <Hero
     title="DevFest22 Catania Astro Example"
     paragrah="Little project for view how to use Astro"
-    buttons={[
-      {
-        label: 'Test',
-        url: 'https://google.com',
-        blank: true
-      },
-      {
-        label: 'Test',
-        url: 'https://google.com',
-        blank: true,
-        theme: 'primary'
-      }
-    ]}
   />
   <SectionPosts
     id="popular-games"
@@ -39,7 +26,7 @@ const latestNews = await news()
     showMoreUrl="/games"
   />
   <SectionPosts
-    id="latest-news"
+    id="news"
     posts={latestNews}
     title="Latest news"
     paragraph={loremIpsum}
