@@ -83,6 +83,16 @@ const githubUrl = 'https://github.com/mono-studio-team/devfest22-astro'
 </header>
 
 <script>
+  function closeMenu() {
+    if (!document.body.classList.contains('menu-visible')) return
+
+    document.body.classList.remove('overflow-hidden');
+    document.body.classList.remove('menu-visible');
+    const header = document.getElementById('header')
+    header?.classList.remove('h-screen');
+    header?.querySelector('nav')?.classList.add('hidden');
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     const toggleThemeItems = document.querySelectorAll('[data-toggle-theme]')
     toggleThemeItems.forEach((item) => {
@@ -90,6 +100,13 @@ const githubUrl = 'https://github.com/mono-studio-team/devfest22-astro'
         document.documentElement.classList.toggle('dark');
         const theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
 			  localStorage.theme = theme;
+      })
+    })
+
+    const navItems = document.querySelectorAll('header nav ul li a')
+    navItems.forEach((item) => {
+      item.addEventListener('click', function() {
+        closeMenu()
       })
     })
 
@@ -107,13 +124,5 @@ const githubUrl = 'https://github.com/mono-studio-team/devfest22-astro'
     })
   })
 
-  window.addEventListener('resize', function() {
-    if (!document.body.classList.contains('menu-visible')) return
-
-    document.body.classList.remove('overflow-hidden');
-    document.body.classList.remove('menu-visible');
-    const header = document.getElementById('header')
-    header?.classList.remove('h-screen');
-    header?.querySelector('nav')?.classList.add('hidden');
-  })
+  window.addEventListener('resize', closeMenu)
 </script>
