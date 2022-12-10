@@ -8,8 +8,8 @@ export const slugify = (str: string) =>
     .replace(/[\s_-]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-export const isGame = (pet: Game | News): pet is Game => {
-  return (<Game>pet).game_url !== undefined;
+export const isGame = (data: Game | News): data is Game => {
+  return (<Game>data).game_url !== undefined;
 };
 
 export const createPost = (data: Game | News) => ({
